@@ -1,0 +1,81 @@
+CREATE DATABASE lojainfotech;
+USE lojainfotech;
+CREATE TABLE Clientes
+   	 (cli_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+    cli_nome varchar(30), 
+    cli_cpf varchar(11), 
+    cli_end varchar(20), 
+    cli_cep varchar(8), 
+    cli_cidade varchar(20), 
+    cli_uf varchar(2),
+    cli_nasc date,
+    cli_email varchar(30),
+    cli_fone varchar(11),
+    cli_sexo char,
+    cli_idade int);
+
+CREATE TABLE Carrinhodecompras
+  	  (car_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     cli_cod int NOT NULL,
+     car_cupom varchar(10),
+     car_quant int,
+     car_total int,
+     car_status varchar(30));
+
+CREATE TABLE pedidos
+   	 (ped_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     car_cod int NOT NULL,
+     vend_cod int NOT NULL,
+     ped_data date,
+     ped_total int);
+
+CREATE TABLE vendedor
+    	 (vend_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     vend_nome varchar(30),
+     vend_fone varchar(11),
+     vend_email varchar(30));
+
+CREATE TABLE itens
+	(item_cod int NOT NULL AUTO_INCREMENT,
+     ped_cod int NOT NULL,
+     prod_cod int NOT NULL,
+     item_qtd int);
+
+CREATE TABLE produtos
+	(Prod_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	Prod_nome varchar(20),
+	Prod_preço int,
+	Prod_marca varchar(20),
+	Prod_unid varchar(20));
+
+CREATE TABLE estoque
+	(Estoque_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        Prod_cod int NOT NULL,
+	Estoque_nome varchar(20),
+	Estoque_qtd int,
+	Estoque_preco int,
+	Estoque_dtentrada date);
+
+CREATE TABLE categoria
+	(cat_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     Prod_cod int NOT NULL,
+     cat_nome varchar(20));
+
+CREATE TABLE avaliacao
+	(Ava_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        Cli_cod int NOT NULL,  
+        Prod_cod int NOT NULL,  
+	Ava_class int,
+	Ava_coment varchar(100));
+
+CREATE TABLE pagamentos
+	(Pag_cod int NOT NULL AUTO_INCREMENT PRIMARY KEY,  
+        ped_cod int NOT NULL,
+	Pag_data date,
+	Pag_metodo varchar(15),
+	Pag_valor int,
+	Pag_bandcard varchar(20),
+	Pag_nomecard varchar(30),
+	Pag_numcard varchar(20),
+	Pag_codsegcard varchar(4),
+	Pag_venccard varchar(5));
